@@ -2,24 +2,41 @@
  * Created by Administrator on 15/4/20.
  */
 
-angular.module("games.controllers", []);
+define([
+  'angular',
+  'app-config',
+  '../games/controllers/undercover',
+  '../games/controllers/root',
+  'angular-route',
+  'angular-resource',
+  'angular-animate'
+], function (angular, config, undercoverCtrl, rootCtrl) {
+  "use strict";
+
+  angular = window.angular;
 
 
-angular.module("games", [
-  "ngRoute", "ngResource", "ngAnimate",
-  /*"infinite-scroll", "games.filters",*/
-  "games.services", /*"games.directives", */"games.controllers"
-]).config([
-  "$routeProvider", "$locationProvider", "$interpolateProvider", "$compileProvider",
-  function ($routeProvider, $locationProvider, $interpolateProvider, $compileProvider) {
-    $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel):/);
-    $interpolateProvider.startSymbol("[[").endSymbol("]]");
-    $locationProvider.html5Mode(!0);
+  angular.module('games.controllers', []);
 
-    $routeProvider.when("/home", {
-      templateUrl: "/msite/html/home_city.html",
-      controller: "homeCtrl"
-    });
-    $routeProvider.otherwise({redirectTo: "/404"});
-  }
-]);
+  var app = angular.module("games", [
+    "ngRoute", "ngResource", "ngAnimate",
+    /*"infinite-scroll", "games.filters",
+     "games.services", "games.directives", */"games.controllers"
+  ]);
+
+  app.config(config);
+
+  app.controller('rootCtrl', rootCtrl);
+  app.controller('undercoverCtrl', undercoverCtrl);
+
+  app.run(["$rootScope", function ($rootScope) {
+    var b = document.domain;//.replace(/^(.+?\.)??(?=(test\.)?[^.]+\.\w+$)/, "");
+    $rootScope.ROOTHOST = b;
+    $rootScope.MOBILEHOST = "m." + b;
+    $rootScope.RESTBASE = "/restapi/v1";
+    $rootScope.PAYMENTBASE = "http://p." + b;
+    $rootScope.ACCOUNTBASE = (/^ele(net)?\.me$/.test(b) ? "https" : "http") + "://account." + b;
+    $rootScope.STATICBASE = "";
+    $rootScope.MAINBASE = location.protocol + "//" + b + '/wap';
+  }]);
+});

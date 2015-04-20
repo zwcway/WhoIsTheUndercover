@@ -21,22 +21,27 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/lib/:module/:js', function (req, res, next) {
-  var module = req.param('module');
-  var js = req.param('js');
 
-  var allowRegxp = /(\.min)?\.(js|css)/i;
-  var options = {
-    root: __dirname + '/node_modules/',
-    dotfiles: 'deny',
-    headers: {
-      'x-timestamp': Date.now(),
-      'x-sent': true
-    }
-  };
-  if (allowRegxp.test(js)) {
-    return res.sendFile(path.join(module, js), options, function (err) {
+/**
+ * 从 node_module 中公开 js 插件文件
+ */
+var libRegxp = /^\/lib\/([^/]+)\/(.+\/)?(.+\.(js|css))$/i;
+var modules = 'angular,angular-route,angular-resource,angular-animate,jquery,bootstrap'.split(',');
+
+app.use(libRegxp, function (req, res, next) {
+  var paths = libRegxp.exec(req.baseUrl);
+  var baseUrl = paths.shift();
+  var extension = paths.pop();
+  var module = paths.shift();
+  var js = paths.pop();
+
+  if (modules.indexOf(module) >= 0) {
+    var options = {
+      root: path.join(__dirname, 'node_modules')
+    };
+    return res.sendFile(path.join(module, paths.join('/'), js), options, function (err) {
       if (err) {
+        console.log(err);
         res.status(err.status).end();
       }
     });
