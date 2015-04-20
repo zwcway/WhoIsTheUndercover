@@ -1,0 +1,8 @@
+html, body {
+    font-size: 12px;
+    min-width: 1024px;
+}
+
+#history {
+    width: 100%;
+}
