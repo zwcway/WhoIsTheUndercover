@@ -8,6 +8,10 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
+
+var libs = require('./routes/libs');
+var games = require('./routes/games');
+
 var app = express();
 
 // view engine setup
@@ -22,35 +26,20 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-/**
- * ´Ó node_module ÖĞ¹«¿ª js ²å¼şÎÄ¼ş
- */
-var libRegxp = /^\/lib\/([^/]+)\/(.+\/)?(.+\.(js|css))$/i;
-var modules = 'angular,angular-route,angular-resource,angular-animate,jquery,bootstrap'.split(',');
-
-app.use(libRegxp, function (req, res, next) {
-  var paths = libRegxp.exec(req.baseUrl);
-  var baseUrl = paths.shift();
-  var extension = paths.pop();
-  var module = paths.shift();
-  var js = paths.pop();
-
-  if (modules.indexOf(module) >= 0) {
-    var options = {
-      root: path.join(__dirname, 'node_modules')
-    };
-    return res.sendFile(path.join(module, paths.join('/'), js), options, function (err) {
-      if (err) {
-        console.log(err);
-        res.status(err.status).end();
-      }
-    });
-  }
-  return next();
-});
 
 app.use('/', routes);
 app.use('/users', users);
+
+/**
+ * ä» node_module ä¸­å…¬å¼€ js æ’ä»¶æ–‡ä»¶
+ */
+app.use(/^\/lib\/.+\.(js|css)$/i, libs);
+
+/**
+ * æ¸¸æˆåˆ—è¡¨
+ */
+app.use(/^\/.*$/i, games);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

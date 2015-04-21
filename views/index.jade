@@ -1,8 +1,5 @@
-extends layout
+unless json
+  extends games
 
 block content
-  div
-    #history.left
-    #settings
-  .speakers
-    textarea(name="speak", id="speak", cols="30", rows="5")
+  a(href="/undercover") 谁是卧底

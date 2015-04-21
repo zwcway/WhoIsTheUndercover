@@ -1,0 +1,15 @@
+extends ../games
+
+append styles
+  link(rel='stylesheet', href='/stylesheets/undercover.css')
+
+block content
+  div.undercover(ng-controller="undercoverCtrl")
+    .container
+      #history.left
+      #settings
+    form.speakers.form-inline
+      .input-group.col-sm-12
+        textarea#message.message.form-control(name="message", rows="5" maxlength="512" ng-maxlength="512")
+        #do-send.input-group-addon.btn.btn-default(type="submit")
+          i.glyphicon.glyphicon-pencil

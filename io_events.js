@@ -18,8 +18,8 @@ function onConnection(socket) {
     console.log('a user connected');
 }
 
-function onChat() {
-
+function onChat(message) {
+    console.log(arguments);
 }
 
 module.exports = ioEvents;
