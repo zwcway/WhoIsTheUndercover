@@ -15,9 +15,12 @@ define([
 
   angular = window.angular;
 
-
   angular.module('games.controllers', []);
 
+  /**
+   *
+   * @type {angular.Module}
+   */
   var app = angular.module("games", [
     "ngRoute", "ngResource", "ngAnimate",
     /*"infinite-scroll", "games.filters",

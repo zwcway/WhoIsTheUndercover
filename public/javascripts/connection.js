@@ -3,12 +3,20 @@
  */
 
 
-(function (io) {
+define([
+  'exports',
+  'socket-io'
+], function (Connection, io) {
 
+  /**
+   * @type {Socket}
+   */
   var socket = io();
 
 
-  function chat(message) {
+  Connection.chat = function (message) {
     socket.emit('user chat', message);
-  }
-})(io);
+  };
+
+  //return Connection;
+});

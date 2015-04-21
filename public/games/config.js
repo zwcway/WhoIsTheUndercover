@@ -5,13 +5,14 @@
 define([], function () {
   "use strict";
 
+  config.$inject = ["$routeProvider", "$locationProvider", "$interpolateProvider", "$compileProvider"];
   function config($routeProvider, $locationProvider, $interpolateProvider, $compileProvider) {
     $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel):/);
     $interpolateProvider.startSymbol("[[").endSymbol("]]");
     $locationProvider.html5Mode(!0);
 
-    $routeProvider.when("/", {
-      templateUrl: "/templates/home_city.html",
+    $routeProvider.when("/undercover", {
+      templateUrl: "/undercover/history.htm",
       controller: "undercoverCtrl"
     });
 
@@ -19,10 +20,14 @@ define([], function () {
       templateUrl: "/templates/home_city.html",
       controller: "undercoverCtrl"
     });
+
+    $routeProvider.when("/wap/404", {
+      templateUrl: "/wap/html/base_404.html",
+      controller: "nofoundCtrl"
+    });
+
     $routeProvider.otherwise({redirectTo: "/404"});
   }
-
-  config.$inject = ["$routeProvider", "$locationProvider", "$interpolateProvider", "$compileProvider"];
 
   return config;
 });

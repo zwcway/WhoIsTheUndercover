@@ -1,14 +1,16 @@
 /**
  * Created by Administrator on 15/4/20.
  */
-define([], function () {
+define([
+  'Connection'
+], function (Connection) {
   "use strict";
 
-  function undercoverCtrl($scope, $rootScope) {
-    alert(1);
-  }
-
   undercoverCtrl.$inject = ['$scope','$rootScope'];
+  function undercoverCtrl($scope, $rootScope) {
+
+    Connection.chat();
+  }
 
   return undercoverCtrl;
 });
