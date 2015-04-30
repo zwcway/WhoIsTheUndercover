@@ -1,0 +1,80 @@
+$width: 200px
+$outerWidth: 30px
+
+#site-loading
+  position: fixed
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  width: 100%
+  height: 100%
+  background: #000
+  font-size: 1em
+
+  &:before
+    content: attr(data-name)
+    position: absolute
+    top: 50%
+    left: 50%
+    width: $width - $outerWidth * 4
+    height: 1em
+
+
+  .position
+    position: absolute
+    top: 50%
+    left: 50%
+    width: $width
+    height: $width
+    margin-top: - $width / 2
+    margin-left: - $width / 2
+
+    &:before, .loading, .loading:before, .loading div, .loading div:before
+      width: 100%
+      height: 100%
+      border-radius: 50%
+      position: absolute
+      top: 0
+      left: 0
+
+    &:before
+      content: ''
+      background: #fff
+      box-shadow: 0 0 $width #fff
+    .loading
+      background: #333
+      box-shadow: 20px 20px 50px -5px #000
+
+      &:before
+        content: ''
+        box-shadow: 1px 1px 5px -2px #eeeeee inset
+
+      .outer-circle
+        width: $width - $outerWidth * 2
+        height: $width - $outerWidth * 2
+        margin: $outerWidth
+        background: #222
+        box-shadow: 5px 5px 20px #000 inset
+
+      .inner-circle
+        width: $width - $outerWidth * 4
+        height: $width - $outerWidth * 4
+        margin: $outerWidth * 2
+        background: #333
+        text-align: center
+        box-shadow: 10px 10px 20px -2px #000
+
+        &:before
+          content: ''
+          box-shadow: 1px 1px 5px -2px #fff inset
+
+        .percent, .msg
+          display: inline-block
+          vertical-align: middle
+          color: #666
+          text-shadow: 0 -1px #000
+        .percent
+          color: #eee
+        .msg
+          font-size: .8em
