@@ -11,9 +11,11 @@ define([], function () {
     $interpolateProvider.startSymbol("[[").endSymbol("]]");
     $locationProvider.html5Mode(!0);
 
-    $routeProvider.when("/undercover", {
+    $routeProvider.when("/game/:game", {
       templateUrl: "/undercover/history.htm",
-      controller: "undercoverCtrl"
+      controller: function () {
+          return './controllers/' + urlattr.name + '.js';
+      }
     });
 
     $routeProvider.when("/home", {

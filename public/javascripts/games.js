@@ -5,7 +5,6 @@
 define([
   'angular',
   'app-config',
-  '../games/controllers/undercover',
   '../games/controllers/root',
   'angular-route',
   'angular-resource',

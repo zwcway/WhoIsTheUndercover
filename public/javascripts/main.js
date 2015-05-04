@@ -38,4 +38,6 @@ requirejs([
     // bootstrap the app manually
     angular.bootstrap(document, ['games']);
   //});
+
+  $('#site-loading').fadeOut();
 });
