@@ -9,7 +9,7 @@ define([
   undercoverCtrl.$inject = ['$scope','$rootScope'];
   function undercoverCtrl($scope, $rootScope) {
 
-    Connection.chat();
+    Connection.chat('hhk');
   }
 
   return undercoverCtrl;

@@ -1,0 +1,26 @@
+=border-radius($radius)
+  -webkit-border-radius: $radius
+  -moz-border-radius: $radius
+  -ms-border-radius: $radius
+  -o-border-radius: $radius
+  border-radius: $radius
+
+=transform($transform)
+  -webkit-transform: $transform
+  -moz-transform: $transform
+  -ms-transform: $transform
+  -o-transform: $transform
+  transform: $transform
+
+
+
+=maximum()
+  width: 100%
+  height: 100%
+
+=half()
+  width: 50%
+  height: 50%
+
+@function strip-units($number)
+  @return $number / ($number * 0 + 1)

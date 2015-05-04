@@ -1,15 +1,17 @@
 //
    Created by Administrator on 15/4/27.
-append styles
-   link(rel='stylesheet', href='/stylesheets/loading.css')
+//append styles
+    link(rel='stylesheet', href='/stylesheets/loading.css')
 
 #site-loading(data-message="LOADING", data-percent="81%")
-   .position
-      .loading
-         .outer-circle
-         .inner-shadow
-         .inner-progressor
-         .inner-circle
-            i.percent 14%
-            span.msg LOADING
+    .position
+        .loading
+            .outer-circle
+            .inner-shadow
+            .inner-progressor
+                svg#progress-svg(viewport="0 0 100 100",version="1.1",xmlns="http://www.w3.org/2000/svg")
+                    circle#progress-bar(r="54",cx="100",cy="100",fill="none")
+            .inner-circle
+                i.percent 14%
+                span.msg LOADING
 

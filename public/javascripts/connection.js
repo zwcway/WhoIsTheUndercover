@@ -13,6 +13,7 @@ define([
    */
   var socket = io();
 
+  window.socket = socket;
 
   Connection.chat = function (message) {
     socket.emit('user chat', message);
