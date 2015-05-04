@@ -8,17 +8,27 @@ define([], function () {
   config.$inject = ["$routeProvider", "$locationProvider", "$interpolateProvider", "$compileProvider"];
   function config($routeProvider, $locationProvider, $interpolateProvider, $compileProvider) {
     $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel):/);
-    $interpolateProvider.startSymbol("[[").endSymbol("]]");
-    $locationProvider.html5Mode(!0);
+    $interpolateProvider.startSymbol("{{").endSymbol("}}");
+    $locationProvider.html5Mode({
+      enabled: true,
+      requireBase: false
+    });
 
-    $routeProvider.when("/game/:game", {
+/*
+    $routeProvider.when("/:game", {
       templateUrl: "/undercover/history.htm",
       controller: function () {
           return './controllers/' + urlattr.name + '.js';
       }
     });
+*/
 
-    $routeProvider.when("/home", {
+    $routeProvider.when("/boombeach", {
+      templateUrl: "/templates/home_city.html",
+      controller: "boombeachCtrl"
+    });
+
+    $routeProvider.when("/undercover", {
       templateUrl: "/templates/home_city.html",
       controller: "undercoverCtrl"
     });

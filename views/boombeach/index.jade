@@ -4,4 +4,15 @@ append styles
   link(rel='stylesheet', href='/stylesheets/boombeach.css')
 
 block content
-  #canvas
+  #app(ng-controller="boombeachCtrl")
+    #canvas.boombeach
+    #buildings
+      ul.tab-content(ng-repeat="cat in buildingCats", class="{{cat.name}}", ng-show="selectedCat === cat.name")
+        li.building(ng-repeat="building in cat.buildings", class="{{building.name}}")
+          .wrapper
+            img.building-logo
+            h3(ng-bind="building.title")
+            p(ng-bing="building.desc", ng-show="building.desc")
+      ul.tab-panel
+        li.tab-bar(ng-repeat="cat in buildingCats", ng-class="active: selectedCat === cat.name", ng-click="selectedCat = cat.name")
+          span(ng-bind="cat.title")

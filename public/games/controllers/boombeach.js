@@ -14,6 +14,27 @@ define([], function () {
      * @param {$location} $location
      */
     function boomBeachCtrl($rootScope, $scope, $route, $location) {
+        $scope.buildingCats = [
+            {
+                name: 'economy',
+                title:'经济类设施',
+                buildings: [
+                    {
+                        name: 'residence',
+                        title:'民房'
+                    }
+                ]
+            },
+            {
+                name: 'defense',
+                title: '防御类设施',
+                buildings: [
+
+                ]
+            }
+        ];
+
+        $scope.selectedCat = $scope.buildingCats[0].name;
     }
 
     return boomBeachCtrl;

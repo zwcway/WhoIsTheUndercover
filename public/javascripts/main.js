@@ -15,7 +15,6 @@ requirejs.config({
     'gamesApp': 'javascripts/games',
     'Connection': 'javascripts/connection',
 
-    'undercover': 'games/controllers/undercover',
     'app-config': 'games/config'
   },
   shim: {
@@ -32,12 +31,12 @@ requirejs.config({
 requirejs([
   'gamesApp'
 ], function () {
-  var $html = angular.element(document.getElementsByTagName('html')[0]);
+  var $app = $('#app');
 
   //angular.element().ready(function () {
     // bootstrap the app manually
     angular.bootstrap(document, ['games']);
   //});
 
-  $('#site-loading').fadeOut();
+  $('#site-loading').hide();
 });

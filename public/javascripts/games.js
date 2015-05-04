@@ -5,11 +5,13 @@
 define([
   'angular',
   'app-config',
+  '../games/controllers/undercover',
+  '../games/controllers/boombeach',
   '../games/controllers/root',
   'angular-route',
   'angular-resource',
   'angular-animate'
-], function (angular, config, undercoverCtrl, rootCtrl) {
+], function (angular, config, undercoverCtrl, boombeachCtrl, rootCtrl) {
   "use strict";
 
   angular = window.angular;
@@ -30,6 +32,7 @@ define([
 
   app.controller('rootCtrl', rootCtrl);
   app.controller('undercoverCtrl', undercoverCtrl);
+  app.controller('boombeachCtrl', boombeachCtrl);
 
   app.run(["$rootScope", function ($rootScope) {
     var b = document.domain;//.replace(/^(.+?\.)??(?=(test\.)?[^.]+\.\w+$)/, "");
