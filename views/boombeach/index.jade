@@ -5,14 +5,23 @@ append styles
 
 block content
   #app(ng-controller="boombeachCtrl")
-    #canvas.boombeach
+    #village.boombeach
+      #grids
+      #builder
+        .building(ng-repeat="building in buildings", class="{{building.name}}",
+        ng-click="building_click($event,building)", data-x="{{building.x}}", data-y="{{building.y}}",
+        data-size="{{building.size}}")
+      #areas
+        svg(version="1.1", xmlns="http://www.w3.org/2000/svg")
+          circle.area(ng-repeat="building in buildings", class="{{building.name}}",
+          r="{{building.area * 10}}", cx="{{building.x}}", cy="{{building.y}}", ng-show="selectedBuilding === building")
     #buildings
-      ul.tab-content(ng-repeat="cat in buildingCats", class="{{cat.name}}", ng-show="selectedCat === cat.name")
-        li.building(ng-repeat="building in cat.buildings", class="{{building.name}}")
+      ul.tab-content(ng-repeat="cat in buildingCats", class="{{cat.name}}", ng-show="selectedCat === cat")
+        li.building(ng-repeat="building in cat.buildings", class="{{building.name}}", ng-click="add_building($event, building)")
           .wrapper
             img.building-logo
             h3(ng-bind="building.title")
             p(ng-bing="building.desc", ng-show="building.desc")
       ul.tab-panel
-        li.tab-bar(ng-repeat="cat in buildingCats", ng-class="active: selectedCat === cat.name", ng-click="selectedCat = cat.name")
+        li.tab-bar(ng-repeat="cat in buildingCats", ng-class="{active: selectedCat === cat.name}", ng-click="cat_click($event, cat)")
           span(ng-bind="cat.title")

@@ -14,6 +14,8 @@ define([], function () {
      * @param {$location} $location
      */
     function boomBeachCtrl($rootScope, $scope, $route, $location) {
+        var bildings = $scope.buildings = [];
+        $scope.selectedBuilding = null;
         $scope.buildingCats = [
             {
                 name: 'economy',
@@ -21,7 +23,9 @@ define([], function () {
                 buildings: [
                     {
                         name: 'residence',
-                        title:'民房'
+                        title:'民房',
+                        area: 5,
+                        size: 3
                     }
                 ]
             },
@@ -34,7 +38,24 @@ define([], function () {
             }
         ];
 
-        $scope.selectedCat = $scope.buildingCats[0].name;
+        $scope.selectedCat = $scope.buildingCats[0];
+
+        $scope.building_click = function($event, building) {
+            if ($scope.selectedBuilding === building) {
+                $scope.selectedBuilding = null;
+            } else {
+                $scope.selectedBuilding = building;
+            }
+        };
+        $scope.cat_click = function($event, cat) {
+            $scope.selectedCat = cat;
+        };
+        $scope.add_building = function($event, building) {
+            building.x = 0;
+            building.y = 0;
+            building.area = building.area || 0;
+            $scope.buildings.push(building);
+        };
     }
 
     return boomBeachCtrl;

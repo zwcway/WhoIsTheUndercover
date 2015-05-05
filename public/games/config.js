@@ -24,7 +24,6 @@ define([], function () {
 */
 
     $routeProvider.when("/boombeach", {
-      templateUrl: "/templates/home_city.html",
       controller: "boombeachCtrl"
     });
 
