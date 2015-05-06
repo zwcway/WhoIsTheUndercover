@@ -1,6 +1,15 @@
+@import "mixins"
 
 $tab-height: 20px
+$unit: 10px
 
+#app
+  position: fixed
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  +maximum
 #buildings
   position: fixed
   bottom: 0
@@ -19,17 +28,40 @@ $tab-height: 20px
     li
       cursor: pointer
       display: inline-block
+#village
+  position: relative
+  background-color: #008800
+  +maximum
+#grids, #builder, #areas
+  position: absolute
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  +maximum
+#grids
+
+// 攻击范围
+#areas
+  pointer-events: none
+
+  svg
+    opacity: .5
+    +maximum
+
+    circle
+      stroke: #eee
+      stroke-width: 2px
+      fill: #fff
+    path
 
 #builder
   .building
     width: 50px
     height: 50px
     background-color: #000
-// 攻击范围
-#areas
-  svg
-    circle
-      stroke: #eee
-      stroke-width: 2px
-      fill: #fff
-    path
+    background-size: 100%
+  .residence
+    background-image: url("../images/Headquarters-Level7.png")
+  .sniper_tower
+    background-image: url("../images/defensive_snipertower.png")

@@ -7,14 +7,15 @@ block content
   #app(ng-controller="boombeachCtrl")
     #village.boombeach
       #grids
+      #areas
+        svg(viewport="0 0 100 100" version="1.1", xmlns="http://www.w3.org/2000/svg")
+          circle.area(ng-repeat="building in buildings", class="{{building.name}}",
+          r="{{building.areaRadius}}", cx="{{building.areaCenter}}", cy="{{building.areaCenter}}",
+          ng-show="selectedBuilding === building", ng-class="{'ng-hide': !building.size}")
       #builder
         .building(ng-repeat="building in buildings", class="{{building.name}}",
         ng-click="building_click($event,building)", data-x="{{building.x}}", data-y="{{building.y}}",
         data-size="{{building.size}}")
-      #areas
-        svg(version="1.1", xmlns="http://www.w3.org/2000/svg")
-          circle.area(ng-repeat="building in buildings", class="{{building.name}}",
-          r="{{building.area * 10}}", cx="{{building.x}}", cy="{{building.y}}", ng-show="selectedBuilding === building")
     #buildings
       ul.tab-content(ng-repeat="cat in buildingCats", class="{{cat.name}}", ng-show="selectedCat === cat")
         li.building(ng-repeat="building in cat.buildings", class="{{building.name}}", ng-click="add_building($event, building)")

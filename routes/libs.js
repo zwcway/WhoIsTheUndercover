@@ -6,7 +6,7 @@
 
 var path = require('path');
 var libRegxp = /^\/lib\/([^/]+)\/(.+\/)?(.+\.(js|css))$/i;
-var modules = 'angular,angular-route,angular-resource,angular-animate,jquery,bootstrap'.split(',');
+var modules = 'angular,angular-route,angular-resource,angular-animate,angular-dragdrop,jquery,bootstrap'.split(',');
 
 function libJS(req, res, next) {
   var paths = libRegxp.exec(req.baseUrl);

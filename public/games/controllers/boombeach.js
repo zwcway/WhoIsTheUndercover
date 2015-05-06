@@ -2,7 +2,8 @@
  * Created by Administrator on 15/5/4.
  */
 
-define([], function () {
+define([
+], function () {
     "use strict";
 
     boomBeachCtrl.$inject = ["$rootScope", "$scope", "$route", "$location"];
@@ -15,6 +16,7 @@ define([], function () {
      */
     function boomBeachCtrl($rootScope, $scope, $route, $location) {
         var bildings = $scope.buildings = [];
+        var unit = $scope.unit = 10;
         $scope.selectedBuilding = null;
         $scope.buildingCats = [
             {
@@ -25,7 +27,7 @@ define([], function () {
                         name: 'residence',
                         title:'民房',
                         area: 5,
-                        size: 3
+                        size: 0
                     }
                 ]
             },
@@ -33,7 +35,12 @@ define([], function () {
                 name: 'defense',
                 title: '防御类设施',
                 buildings: [
-
+                    {
+                        name: 'sniper_tower',
+                        title:'狙击塔',
+                        area: 3,
+                        size: 7
+                    }
                 ]
             }
         ];
@@ -54,6 +61,8 @@ define([], function () {
             building.x = 0;
             building.y = 0;
             building.area = building.area || 0;
+            building.areaRadius = (building.size + building.area) * unit;
+            building.areaCenter = building.areaRadius / 2;
             $scope.buildings.push(building);
         };
     }
